@@ -21,7 +21,7 @@ public class ItemRepository {
 
     //아이템 저장
     public Item save(Item item) {
-        item.setId(sequance++);
+        item.setId(++sequance);
         store.put(item.getId(), item);
         return item;
     }
