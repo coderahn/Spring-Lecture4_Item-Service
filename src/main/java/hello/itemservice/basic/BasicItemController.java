@@ -87,6 +87,24 @@ public class BasicItemController {
         return "basic/item";
     }
 
+    //상품수정폼
+    @GetMapping("/{itemId}/edit")
+    public String editForm(@PathVariable Long itemId, Model model) {
+        Item item = itemRepository.findById(itemId);
+        model.addAttribute("item", item);
+        return "basic/editForm";
+    }
+
+    //상품수정
+    @PostMapping("/{itemId}/edit")
+    public String edit(@PathVariable Long itemId, @ModelAttribute Item item) {
+        itemRepository.update(itemId, item);
+
+        //뷰템플릿 호출 대신 상품상세로 리다이렉트(302)
+        //@PathVariable값 사용 가능
+        return "redirect:/basic/items/{itemId}";
+    }
+
     //테스트용 데이터 추가
     @PostConstruct
     public void init() {

@@ -20,6 +20,7 @@ class ItemRepositoryTest {
     void save() {
         //given
         Item item = new Item("itemA", 10000, 10);
+
         //when
         Item savedItem = itemRepository.save(item);
 
@@ -61,7 +62,5 @@ class ItemRepositoryTest {
         assertThat(findItem.getItemName()).isEqualTo(updateParam.getItemName());
         assertThat(findItem.getPrice()).isEqualTo(updateParam.getPrice());
         assertThat(findItem.getQuantity()).isEqualTo(updateParam.getQuantity());
-
-
     }
 }
