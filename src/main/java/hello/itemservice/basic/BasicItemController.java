@@ -80,11 +80,18 @@ public class BasicItemController {
     }
 
     //ModelAttribute 생략 가능(String등 단순타입인 경우 생략하면 @RequestParam)
-    @PostMapping("/add")
+    //@PostMapping("/add")
     public String addItemV4(Item item) {
         itemRepository.save(item);
 
         return "basic/item";
+    }
+
+    //PRG 패턴 적용(저장로직 중복 방지)
+    @PostMapping("/add")
+    public String addItemV5(Item item) {
+        itemRepository.save(item);
+        return "redirect:/basic/items/" + item.getId();
     }
 
     //상품수정폼
